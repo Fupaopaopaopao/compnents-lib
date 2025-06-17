@@ -11,6 +11,7 @@ type DropdownProps ={
 type DropdownItem = {
     label:React.ReactNode;
     click:()=>void;
+    key:number;
 }
 
 
@@ -35,7 +36,7 @@ const handleMouseLeave = ()=>{
         <div>{props.children}</div>
         <AnimatePresence>
             {showDrop &&(
-            <motion.div className='absolute mt-2 rounded shadow-lg bg-white border border-slate-200 p-2 z-50'
+            <motion.div className='absolute mt-2 rounded shadow-lg bg-white border border-slate-200 p-2 z-50 w-50'
                initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
