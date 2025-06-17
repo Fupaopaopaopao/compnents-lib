@@ -6,14 +6,19 @@ import { ReactNode } from "react";
 interface CustomButtonProps {
   label: string;
   icon?: ReactNode;
+  onClick?:()=>void;
 }
 
-export const CustomButton: React.FC<CustomButtonProps> = ({ label, icon }) => {
+export const CustomButton: React.FC<CustomButtonProps> = ( props) => {
   const [showPing, setShowPing] = useState(false);
 
   const handleClickPing = () => {
     setShowPing(true);
     setTimeout(() => setShowPing(false), 400);
+
+    if(props.onClick){
+      props.onClick();
+    }
   };
 
   return (
@@ -27,11 +32,11 @@ export const CustomButton: React.FC<CustomButtonProps> = ({ label, icon }) => {
       )}
 
       <div className="flex">
-        <span>{icon}</span>
-        {icon ? (
-          <span className="pl-2">{label}</span>
+        <span>{props.icon}</span>
+        {props.icon ? (
+          <span className="pl-2">{props.label}</span>
         ) : (
-          <span>{label}</span>
+          <span>{props.label}</span>
         )}
       </div>
     </button>
