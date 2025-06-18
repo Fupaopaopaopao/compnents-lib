@@ -6,6 +6,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { CustomModal } from "./components/modal";
 import { useState } from "react";
 import { CustomDropDown, DropdownItem } from "./components/dropdown";
+import { CustomHeader } from "./components/header";
 
 export default function Home() {
   const texts =
@@ -22,7 +23,7 @@ export default function Home() {
     setShow(true);
   };
 
-  const items: DropdownItem = [
+  const items= [
     {
       label: <p>item 1 dropdown menu</p>,
       click: clickItem1,
@@ -37,7 +38,8 @@ export default function Home() {
 
   return (
     <div>
-      <div className="flex p-5 gap-2">
+      <CustomHeader/>
+      <div><div className="flex p-5 gap-2 mt-16">
         <CustomButton
           label="Modal"
           icon={<EditOutlined />}
@@ -68,7 +70,8 @@ export default function Home() {
           show={show}
           onCancel={handleCancel}
         />
-      </div>
+      </div></div>
+      
     </div>
   );
 }

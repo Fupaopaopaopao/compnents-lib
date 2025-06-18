@@ -8,7 +8,7 @@ type DropdownProps ={
     children: React.ReactNode;
     items:DropdownItem[];
 }
-type DropdownItem = {
+export type DropdownItem = {
     label:React.ReactNode;
     click:()=>void;
     key:number;
@@ -41,12 +41,12 @@ const handleMouseLeave = ()=>{
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ duration: 0.2 }}> 
-                {props.items.map((item)=>(
+                {props.items.map((item,index)=>(
                     
                     <div className='transition ease-in-out rounded hover:bg-slate-300 py-1 px-3' onClick={()=>{
                         item.click();
                         setShowDrop(false);
-                    }}>
+                    }} key={index}>
                         {item.label}
                     </div>
                 ))}
