@@ -1,6 +1,11 @@
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { CustomHeader } from "./components/header";
+import { Sider } from "./components/sider";
+import { MenuItem } from "./components/menu";
+import { SiderWrapper } from "./components/mySider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,11 +27,32 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const clickitem1 = () => {
+    console.log(111)
+  };
+  const clickItem2 = () => {
+    console.log(222)
+  };
+  const items:MenuItem[] = [
+    {
+      label: <p>item 1 dropdown menu</p>,
+      click: clickitem1,
+      key: "item1",
+    },
+    {
+      label: <p>item 2 modal open</p>,
+      click: clickItem2,
+      key: "item2",
+    },
+  ];
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <CustomHeader/>
+        <SiderWrapper/>
+
         {children}
       </body>
     </html>
