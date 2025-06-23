@@ -2,16 +2,91 @@
 
 import { Sider } from "../sider";
 import { MenuItem } from "../menu";
-import { label } from "framer-motion/client";
+import {
+  AppstoreOutlined,
+  UserOutlined,
+  SettingOutlined,
+  HomeOutlined,
+} from "@ant-design/icons";
+import React from "react";
 
 export const SiderWrapper = () => {
-  const clickitem1 = () => console.log(111);
-  const clickitem2 = () => console.log("烦死了");
+  const handleClick = (label: string) => () => console.log(label);
 
+  // 构造 20 个普通菜单项 + 1 个 group + 1 个 submenu
   const items: MenuItem[] = [
-    { label: <p>ITEM 1 MENUITEM</p>, click: clickitem1, key: "item1" },
-    { label: <p>ITEM 2 MENUITEM</p>, click: clickitem2, key: "item2",children:[{label:<p>ITEM 2 SUBMENUITEM</p>,click:clickitem2,key:"subitem1"}],type:"group" },
-    { label: <p>ITEM 2 MENUITEM</p>, click: clickitem2, key: "item3",children:[{label:<p>ITEM 2 SUBMENUITEM</p>,click:clickitem2,key:"groupitem1"}],type:"subMenu" },
+    {
+      label: (
+        <div className="flex items-center gap-2">
+          <HomeOutlined />
+          <span>Dashboard</span>
+        </div>
+      ),
+      click: handleClick("Dashboard"),
+      key: "dashboard",
+    },
+    ...Array.from({ length: 10 }, (_, i) => ({
+      label: (
+        <div className="flex items-center gap-2">
+          <AppstoreOutlined />
+          <span>Item {i + 1}</span>
+        </div>
+      ),
+      click: handleClick(`Item ${i + 1}`),
+      key: `item-${i + 1}`,
+    })),
+    {
+      label: (
+        <div className="flex items-center gap-2">
+          <UserOutlined />
+          <span>Users</span>
+        </div>
+      ),
+      click: () => {},
+      key: "group-users",
+      type: "group",
+      children: [
+        {
+          label: (
+            <div className="flex items-center gap-2 pl-4">
+              <span>User List</span>
+            </div>
+          ),
+          click: handleClick("User List"),
+          key: "user-list",
+        },
+      ],
+    },
+    {
+      label: (
+        <div className="flex items-center gap-2">
+          <SettingOutlined />
+          <span>Settings</span>
+        </div>
+      ),
+      click: () => {},
+      key: "settings",
+      children: [
+        {
+          label: (
+            <div className="flex items-center gap-2 pl-4">
+              <span>General</span>
+            </div>
+          ),
+          click: handleClick("General"),
+          key: "settings-general",
+        },
+        {
+          label: (
+            <div className="flex items-center gap-2 pl-4">
+              <span>Security</span>
+            </div>
+          ),
+          click: handleClick("Security"),
+          key: "settings-security",
+        },
+      ],
+    },
   ];
 
   return <Sider items={items} />;
