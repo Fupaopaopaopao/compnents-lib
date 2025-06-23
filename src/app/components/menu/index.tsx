@@ -1,7 +1,7 @@
 "use client";
 
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 type MenuProps = {
   items: MenuItem[];
@@ -19,15 +19,12 @@ export const Menu = (props: MenuProps) => {
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const [active, setActive] = useState<string | null>(null);
 
-  const shouldRenderChildren = (item: MenuItem) => {
-    if (!item.children) return false;
+const shouldRenderChildren = useCallback((item: MenuItem) => {
+  if (!item.children) return false;
+  if (item.type === "group") return true;
+  return openKeys.includes(item.key);
+}, [openKeys]);
 
-    if (item.type === "group") {
-      return true;
-    }
-
-    return openKeys.includes(item.key);
-  };
 
   const renderItem = (menu: MenuItem[]) => {
     const handelOpen = (key: string) => {
