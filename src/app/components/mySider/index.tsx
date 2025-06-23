@@ -10,7 +10,8 @@ export const SiderWrapper = () => {
 
   const items: MenuItem[] = [
     { label: <p>ITEM 1 MENUITEM</p>, click: clickitem1, key: "item1" },
-    { label: <p>ITEM 2 MENUITEM</p>, click: clickitem2, key: "item2",children:[{label:<p>ITEM 2 SUBMENUITEM</p>,click:clickitem2,key:"subitem1"}] },
+    { label: <p>ITEM 2 MENUITEM</p>, click: clickitem2, key: "item2",children:[{label:<p>ITEM 2 SUBMENUITEM</p>,click:clickitem2,key:"subitem1"}],type:"group" },
+    { label: <p>ITEM 2 MENUITEM</p>, click: clickitem2, key: "item3",children:[{label:<p>ITEM 2 SUBMENUITEM</p>,click:clickitem2,key:"groupitem1"}],type:"subMenu" },
   ];
 
   return <Sider items={items} />;

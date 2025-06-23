@@ -12,11 +12,23 @@ export type MenuItem = {
   click: () => void;
   key: string;
   children?: MenuItem[];
+  type?:string;
 };
 
 export const Menu = (props: MenuProps) => {
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const [active, setActive] = useState<string | null>(null);
+
+  const shouldRenderChildren = (item: MenuItem) => {
+    if (!item.children) return false;
+
+    if (item.type === "group") {
+      return true; 
+    }
+
+    return openKeys.includes(item.key);
+  };
+
 
   const renderItem = (menu: MenuItem[]) => {
     const handelOpen = (key: string) => {
@@ -33,7 +45,11 @@ export const Menu = (props: MenuProps) => {
       <div>
         {menu.map((item, index) => (
           <div key={item.key} className="p-1">
-            <div
+            {(item.type === 'group' && item.children)? (
+                <div className="text-slate-400 font-semibold px-3 py-1 select-none">
+                    {item.label}
+                </div>
+            ):(<div
               className={`flex justify-between transition ease-in-out rounded py-2 px-3 cursor-pointer transition ease-in-out duration-300 select-none
               ${
                 active === item.key
@@ -57,13 +73,13 @@ export const Menu = (props: MenuProps) => {
                     openKeys.includes(item.key) ? "rotate-180" : "rotate-0"
                   }`}
                 >
-                  <UpOutlined />
+                  <DownOutlined />
                 </div>
               )}
-            </div>
-            {item.children &&
-              openKeys.includes(item.key) &&
-              renderItem(item.children)}
+            </div>)}
+            
+            {(shouldRenderChildren(item)) &&
+              renderItem(item.children!)}
           </div>
         ))}
       </div>
