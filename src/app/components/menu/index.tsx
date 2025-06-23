@@ -1,30 +1,35 @@
 "use client";
 
-import { DownOutlined, UpOutlined } from "@ant-design/icons";
-import React, { useCallback, useState } from "react";
+import { DownOutlined } from "@ant-design/icons";
+import React, { useState } from "react";
 
 type MenuProps = {
   items: MenuItem[];
+  collapse?: boolean;
 };
 
 export type MenuItem = {
   label: React.ReactNode;
-  click: () => void;
+  click?: () => void;
   key: string;
   children?: MenuItem[];
   type?: string;
+  icon?: React.ReactNode;
 };
 
 export const Menu = (props: MenuProps) => {
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const [active, setActive] = useState<string | null>(null);
 
-const shouldRenderChildren = useCallback((item: MenuItem) => {
-  if (!item.children) return false;
-  if (item.type === "group") return true;
-  return openKeys.includes(item.key);
-}, [openKeys]);
+  const shouldRenderChildren = (item: MenuItem) => {
+    if (!item.children) return false;
 
+    if (item.type === "group") {
+      return true;
+    }
+
+    return openKeys.includes(item.key);
+  };
 
   const renderItem = (menu: MenuItem[]) => {
     const handelOpen = (key: string) => {
@@ -42,9 +47,11 @@ const shouldRenderChildren = useCallback((item: MenuItem) => {
         {menu.map((item, index) => (
           <div key={item.key} className="p-1">
             {item.type === "group" && item.children ? (
-              <div className="text-slate-400 font-semibold px-3 py-1 select-none">
-                {item.label}
-              </div>
+              !props.collapse && (
+                <div className="text-slate-400 font-semibold px-3 py-1 select-none">
+                  {item.label}
+                </div>
+              )
             ) : (
               <div
                 className={`flex justify-between transition ease-in-out rounded py-2 px-3 cursor-pointer transition ease-in-out duration-300 select-none
@@ -57,14 +64,25 @@ const shouldRenderChildren = useCallback((item: MenuItem) => {
                   if (item.children) {
                     handelOpen(item.key);
                   } else {
-                    item.click();
+                    if (item.click) {
+                      item.click();
+                    }
                     handelActive(item.key);
                   }
                 }}
                 key={index}
               >
-                {item.label}
-                {item.children && (
+                <div className="flex items-center gap-2">
+                  {props.collapse ? (
+                    <div>{item.icon}</div>
+                  ) : (
+                    <>
+                      {item.icon}
+                      <span>{item.label}</span>
+                    </>
+                  )}
+                </div>
+                {!props.collapse && item.children && (
                   <div
                     className={`transition-transform duration-300 ${
                       openKeys.includes(item.key) ? "rotate-180" : "rotate-0"
@@ -75,10 +93,10 @@ const shouldRenderChildren = useCallback((item: MenuItem) => {
                 )}
               </div>
             )}
-     
-{shouldRenderChildren(item) && renderItem(item.children!)}
-       
-            
+
+            {shouldRenderChildren(item) &&
+              !props.collapse &&
+              renderItem(item.children!)}
           </div>
         ))}
       </div>

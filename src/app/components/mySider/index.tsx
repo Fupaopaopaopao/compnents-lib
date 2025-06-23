@@ -7,87 +7,84 @@ import {
   UserOutlined,
   SettingOutlined,
   HomeOutlined,
+  LockOutlined,
+  TeamOutlined,
 } from "@ant-design/icons";
 import React from "react";
 
 export const SiderWrapper = () => {
-  const handleClick = (label: string) => () => console.log(label);
-
-  // 构造 20 个普通菜单项 + 1 个 group + 1 个 submenu
-  const items: MenuItem[] = [
+  const menuItems: MenuItem[] = [
     {
-      label: (
-        <div className="flex items-center gap-2">
-          <HomeOutlined />
-          <span>Dashboard</span>
-        </div>
-      ),
-      click: handleClick("Dashboard"),
-      key: "dashboard",
-    },
-    ...Array.from({ length: 10 }, (_, i) => ({
-      label: (
-        <div className="flex items-center gap-2">
-          <AppstoreOutlined />
-          <span>Item {i + 1}</span>
-        </div>
-      ),
-      click: handleClick(`Item ${i + 1}`),
-      key: `item-${i + 1}`,
-    })),
-    {
-      label: (
-        <div className="flex items-center gap-2">
-          <UserOutlined />
-          <span>Users</span>
-        </div>
-      ),
-      click: () => {},
-      key: "group-users",
+      key: "main-group",
+      label: "Main Navigation",
       type: "group",
       children: [
         {
-          label: (
-            <div className="flex items-center gap-2 pl-4">
-              <span>User List</span>
-            </div>
-          ),
-          click: handleClick("User List"),
-          key: "user-list",
+          key: "dashboard",
+          label: "Dashboard",
+          icon: <HomeOutlined />,
+          click: () => console.log("Go to Dashboard"),
+        },
+        {
+          key: "apps",
+          label: "Applications",
+          icon: <AppstoreOutlined />,
+          click: () => console.log("Go to Applications"),
         },
       ],
     },
     {
-      label: (
-        <div className="flex items-center gap-2">
-          <SettingOutlined />
-          <span>Settings</span>
-        </div>
-      ),
-      click: () => {},
-      key: "settings",
+      key: "user-group",
+      label: "User Settings",
+      type: "group",
       children: [
         {
-          label: (
-            <div className="flex items-center gap-2 pl-4">
-              <span>General</span>
-            </div>
-          ),
-          click: handleClick("General"),
-          key: "settings-general",
+          key: "user",
+          label: "User",
+          icon: <UserOutlined />,
+          children: [
+            {
+              key: "profile",
+              label: "Profile",
+              icon: <UserOutlined />,
+              click: () => console.log("Go to Profile"),
+            },
+            {
+              key: "team",
+              label: "Team",
+              icon: <TeamOutlined />,
+              click: () => console.log("Go to Team"),
+            },
+          ],
         },
         {
-          label: (
-            <div className="flex items-center gap-2 pl-4">
-              <span>Security</span>
-            </div>
-          ),
-          click: handleClick("Security"),
-          key: "settings-security",
+          key: "security",
+          label: "Security",
+          icon: <LockOutlined />,
+          children: [
+            {
+              key: "password",
+              label: "Password",
+              icon: <LockOutlined />,
+              click: () => console.log("Change Password"),
+            },
+            {
+              key: "2fa",
+              label: "Two-Factor Auth",
+              icon: <LockOutlined />,
+              click: () => console.log("2FA Settings"),
+            },
+          ],
         },
       ],
     },
+    {
+      key: "system",
+      label: "System",
+      icon: <SettingOutlined />,
+      click: () => console.log("System settings"),
+    },
   ];
 
-  return <Sider items={items} />;
+  return <Sider items={menuItems} />;
 };
