@@ -6,6 +6,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { CustomModal } from "./components/modal";
 import { useState } from "react";
 import { CustomDropDown, DropdownItem } from "./components/dropdown";
+import { CustomInput } from "./components/input";
 
 
 export default function Home() {
@@ -72,6 +73,8 @@ export default function Home() {
             onCancel={handleCancel}
           />
         </div>
+        <div className="w-80 p-3"><CustomInput placeholder="hint" label="Input"/></div>
+        
       </div>
     </div>
   );
