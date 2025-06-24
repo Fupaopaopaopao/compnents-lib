@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <div>
 
-      <div className="mt-16 ml-100">
+      <div className="mt-16">
         <div className="flex p-5 gap-2">
           <CustomButton
             label="Modal"
