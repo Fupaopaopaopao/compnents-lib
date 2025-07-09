@@ -16,6 +16,7 @@ export const CustomCheckbox = ({ options }: CheckboxProps) => {
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     const isChecked = event.target.checked;
+    // the most important event.target.checked
     if (isChecked) {
       setCheckedList((prev) => [...prev, value]);
     } else {
