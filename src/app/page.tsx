@@ -7,6 +7,7 @@ import { CustomModal } from "./components/modal";
 import { useState } from "react";
 import { CustomDropDown, DropdownItem } from "./components/dropdown";
 import { CustomInput } from "./components/input";
+import { CheckBoxOption, CustomCheckbox } from "./components/checkbox";
 
 
 export default function Home() {
@@ -37,10 +38,15 @@ export default function Home() {
     },
   ];
 
+  const checkboxOPtions:CheckBoxOption[]=[{
+    value:"value1",
+    label:"Value1"
+  }]
+
   return (
     <div>
 
-      <div className="mt-16">
+      <div className="mt-16 flex flex-col">
         <div className="flex p-5 gap-2">
           <CustomButton
             label="Modal"
@@ -74,6 +80,7 @@ export default function Home() {
           />
         </div>
         <div className="w-80 p-3"><CustomInput placeholder="hint" label="Input"/></div>
+        <div className="w-80 p-3"><CustomCheckbox options={checkboxOPtions}/></div>
         
       </div>
     </div>
