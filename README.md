@@ -15,5 +15,7 @@ npm install
 # WIKI 
 https://github.com/Fupaopaopaopao/compnents-lib/wiki
 
-# Button
+## Button
 ![Button](https://github.com/Fupaopaopaopao/compnents-lib/blob/main/public/btn.gif)
+## Card
+![Card](https://github.com/Fupaopaopaopao/compnents-lib/blob/main/public/card.gif)
