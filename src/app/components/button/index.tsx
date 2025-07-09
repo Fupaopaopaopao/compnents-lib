@@ -28,7 +28,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ( props) => {
        bg-slate-900 text-white text-lg rounded-lg transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-102 hover:shadow-lg dark:bg-slate-300 dark:text-slate-900 select-none"
     >
       {showPing && (
-        <span className="absolute inset-0 animate-ping bg-slate-100 opacity-40 rounded-[inherit] pointer-events-none"></span>
+        <span className="absolute inset-0 animate-ping bg-slate-100 opacity-40 pointer-events-none"></span>
       )}
 
       <div className="flex">
