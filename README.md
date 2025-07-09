@@ -21,4 +21,6 @@ https://github.com/Fupaopaopaopao/compnents-lib/wiki
 ![Card](https://github.com/Fupaopaopaopao/compnents-lib/blob/main/public/card.gif)
 ## Checkbox
 ![Checkbox](https://github.com/Fupaopaopaopao/compnents-lib/blob/main/public/cb.gif)
+## DropDown
+![dd](https://github.com/Fupaopaopaopao/compnents-lib/blob/main/public/dd.gif)
  
