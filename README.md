@@ -19,3 +19,6 @@ https://github.com/Fupaopaopaopao/compnents-lib/wiki
 ![Button](https://github.com/Fupaopaopaopao/compnents-lib/blob/main/public/btn.gif)
 ## Card
 ![Card](https://github.com/Fupaopaopaopao/compnents-lib/blob/main/public/card.gif)
+## Checkbox
+![Checkbox](https://github.com/Fupaopaopaopao/compnents-lib/blob/main/public/checkbox.gif)
+ 
