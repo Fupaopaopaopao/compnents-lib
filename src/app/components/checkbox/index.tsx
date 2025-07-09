@@ -25,7 +25,7 @@ export const CustomCheckbox = ({ options }: CheckboxProps) => {
   };
   return (
     <>
-      <p>{CheckedList}</p>
+      
       {options.map((option, index) => {
         return (
           <div className="flex gap-2" key={index}>
@@ -40,6 +40,7 @@ export const CustomCheckbox = ({ options }: CheckboxProps) => {
           </div>
         );
       })}
+      <p>{CheckedList}</p>
     </>
   );
 };
