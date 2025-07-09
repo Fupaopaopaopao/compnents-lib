@@ -14,3 +14,6 @@ npm install
 ```
 # WIKI 
 https://github.com/Fupaopaopaopao/compnents-lib/wiki
+
+# Button
+![Button](https://github.com/Fupaopaopaopao/compnents-lib/blob/main/public/btn.gif)
